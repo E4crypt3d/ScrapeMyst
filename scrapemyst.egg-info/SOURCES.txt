@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+scrapemyst/ScrapeMyst.py
+scrapemyst/__init__.py
+scrapemyst.egg-info/PKG-INFO
+scrapemyst.egg-info/SOURCES.txt
+scrapemyst.egg-info/dependency_links.txt
+scrapemyst.egg-info/requires.txt
+scrapemyst.egg-info/top_level.txt
