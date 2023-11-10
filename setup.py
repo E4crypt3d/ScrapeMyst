@@ -13,10 +13,13 @@ setup(
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/E4crypt3d/ScrapeMyst',
-    download_url='https://github.com/E4crypt3d/ScrapeMyst/archive/refs/tags/0.3.tar.gz',
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
+    project_urls={
+        'Source': 'https://github.com/E4crypt3d/ScrapeMyst',
+        'Download': 'https://pypi.org/project/scrapemyst/0.3/',
+    },
 )
