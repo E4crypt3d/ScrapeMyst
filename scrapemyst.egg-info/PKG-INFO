@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: scrapemyst
-Version: 0.1
+Version: 0.2
 Summary: A class for sending web requests with customizable headers and user-agents.
 Home-page: https://github.com/e4crypt3d/scrapemyst
 Download-URL: https://github.com/e4crypt3d/scrapemyst/archive/0.1.tar.gz
@@ -27,20 +27,45 @@ pip install scrapemyst
 ## Usage
 
 ```python
-from scrapemyst import ScrapeMyst
+# Import the ScrapeMyst class
+from ScrapeMyst import ScrapeMyst
 
-# Create an instance of ScrapeMyst
-scrapemyst = ScrapeMyst()
+# Create an instance of ScrapeMyst, optionally providing a list of proxy URLs
+scrapemyst = ScrapeMyst(proxies=["127.0.0.1:8000", "example.com:8080"])
 
-# Send a GET request
-response_get = scrapemyst.send_get('https://example.com')
+# OR
 
-# Send a POST request with form data
-response_post = scrapemyst.send_post('https://example.com', data={'key': 'value'})
+# Import the ScrapeMyst object directly if you are not providing list of proxy urls
+from ScrapeMyst import scrapemyst
 
-# Print the responses
-print("GET Response:", response_get)
-print("POST Response:", response_post)
+
+# Example of sending a GET request
+url_get = "https://www.example.com"
+get_response = scrapemyst.send_get(url_get, params={"param1": "value1"}, sleep=True, referer="https://www.referer.com")
+
+if get_response['success']:
+    print(f"GET Request Successful. Status Code: {get_response['status_code']}")
+    # Access the response object if needed: get_response['data']
+
+# Example of sending a POST request with form data
+url_post_form = "https://www.example.com/post"
+form_data = {"key1": "value1", "key2": "value2"}
+post_response_form = scrapemyst.send_post(url_post_form, data=form_data, sleep=True, referer="https://www.referer.com")
+
+if post_response_form['success']:
+    print(f"POST Request (Form Data) Successful. Status Code: {post_response_form['status_code']}")
+    # Access the response object if needed: post_response_form['data']
+
+# Example of sending a POST request with JSON data
+url_post_json = "https://www.example.com/api"
+json_data = {"key1": "value1", "key2": "value2"}
+post_response_json = scrapemyst.send_post(url_post_json, json=json_data, sleep=True, referer="https://www.referer.com")
+
+if post_response_json['success']:
+    print(f"POST Request (JSON Data) Successful. Status Code: {post_response_json['status_code']}")
+    # Access the response object if needed: post_response_json['data']
+
+
 ```
 
 ## Customization

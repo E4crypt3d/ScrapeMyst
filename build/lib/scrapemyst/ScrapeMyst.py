@@ -242,4 +242,5 @@ class ScrapeMyst:
             }
 
 
+# creating a object of the class
 scrapemyst = ScrapeMyst()
