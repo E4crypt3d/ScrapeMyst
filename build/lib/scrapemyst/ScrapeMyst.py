@@ -66,7 +66,6 @@ class ScrapeMyst:
             if proxies:
                 proxy = random.choice(proxies)
                 proxy = f'http://{proxy}'
-                print(proxy)
                 self.proxies = {
                     'http': f'{proxy}'
                 }
