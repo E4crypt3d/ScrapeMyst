@@ -111,15 +111,19 @@ class ScrapeMyst:
             # Handle any exceptions and log an error message
             print(f'Error while updating headers: {e}')
 
-    def send_get(self, url, params=None, sleep=None, referer=None):
+    def send_get(self, url, params=None, sleep=None, referer=None, verbose=False):
         """
         Send a GET request with customizable settings.
 
         Args:
             url (str): The URL to send the GET request to.
             params (dict, optional): Query parameters to include in the request.
-            sleep (bool, optional): If True, adds a random sleep interval between 2 to 5 seconds before making the request.
+            sleep (int, float, tuple, optional): If specified, adds a random sleep interval before making the request.
+                - If an integer or float, it represents the sleep duration in seconds after which the request is made.
+                - If a tuple (start, end), adds a random sleep interval between start and end seconds before the request.
+
             referer (str, optional): The referer to set in the request headers. Defaults to the request URL if not provided.
+            verbose (bool, optional): If True, prints the request headers before sending the request.
 
         Returns:
             dict or None: A dictionary containing status information and the response object if the request is successful,
@@ -127,18 +131,33 @@ class ScrapeMyst:
 
             The dictionary has the following structure:
             {
-                'status_code': int,    # HTTP status code of the response
-                'success': bool,        # True if the request is successful, False if there's an error
+                'status_code': int,      # HTTP status code of the response
+                'success': bool,         # True if the request is successful, False if there's an error
                 'data': requests.Response or None  # The response object if successful, or None if there's an error
             }
 
         Raises:
+            ValueError: If sleep interval is invalid.
             requests.exceptions.RequestException: If an error occurs during the GET request.
         """
         try:
-            if sleep:
-                # Add a random sleep interval between 2 to 5 seconds
-                time.sleep(random.uniform(2, 5))
+            if sleep is not None:
+                if isinstance(sleep, tuple):
+                    sleep_before, sleep_after = sleep
+                else:
+                    sleep_before = 0
+                    sleep_after = sleep
+                if sleep_before >= 0 and sleep_after > sleep_before:
+                    # Add a random sleep interval between two numbers
+                    try:
+                        time.sleep(random.uniform(sleep_before, sleep_after))
+                    except Exception as e:
+                        print(e)
+                else:
+                    raise ValueError(
+                        'Invalid sleep interval: The start value of sleep must be greater than or equal to 0, '
+                        'and the end value must be greater than the start value.'
+                    )
 
             # Set the Referer header to the specified value or the URL if not provided
             if referer:
@@ -149,8 +168,11 @@ class ScrapeMyst:
             # Rotate the "User-Agent" header by selecting a random user-agent string from the list.
             self.headers["User-Agent"] = random.choice(self.user_agents)
 
+            if verbose:
+                for key, value in self.headers.items():
+                    print(f'{key}\t-\t{value}\n')
+
             # Send the GET request
-            print(self.headers)
             response = self.session.get(
                 url, headers=self.headers, params=params, proxies=self.proxies if self.proxies else None)
 
@@ -163,16 +185,24 @@ class ScrapeMyst:
                 'data': response
             }
 
+        except ValueError as ve:
+            # Handle the specific ValueError and log an error message
+            print(f"ValueError: {ve}")
+            return {
+                'status_code': None,
+                'success': False,
+                'error_message': str(ve)
+            }
         except requests.exceptions.RequestException as e:
-            # Handle any exceptions and log an error message
-            print(f"Get requset failed : {e}")
+            # Handle any other exceptions and log an error message
+            print(f"Get request failed: {e}")
             return {
                 'status_code': None,
                 'success': False,
                 'error_message': str(e)
             }
 
-    def send_post(self, url, data=None, json=None, sleep=None, referer=None):
+    def send_post(self, url, data=None, json=None, sleep=None, referer=None, verbose=False):
         """
         Send a POST request with customizable settings.
 
@@ -180,8 +210,11 @@ class ScrapeMyst:
             url (str): The URL to send the POST request to.
             data (dict, optional): Form data to include in the request body.
             json (dict, optional): JSON data to include in the request body.
-            sleep (bool, optional): If True, adds a random sleep interval between 2 to 5 seconds before making the request.
+            sleep (int, float, tuple, optional): If specified, adds a random sleep interval before making the request.
+                - If an integer or float, it represents the sleep duration in seconds after which the request is made.
+                - If a tuple (start, end), adds a random sleep interval between start and end seconds before the request.
             referer (str, optional): The referer to set in the request headers. Defaults to the request URL if not provided.
+            verbose (bool, optional): If True, prints the request headers before sending the request.
 
         Returns:
             dict or None: A dictionary containing status information and the response object if the request is successful,
@@ -189,19 +222,33 @@ class ScrapeMyst:
 
             The dictionary has the following structure:
             {
-                'status_code': int,    # HTTP status code of the response
-                'success': bool,        # True if the request is successful, False if there's an error
+                'status_code': int,      # HTTP status code of the response
+                'success': bool,         # True if the request is successful, False if there's an error
                 'data': requests.Response or None  # The response object if successful, or None if there's an error
             }
 
         Raises:
-            ValueError: If neither 'data' nor 'json' is provided for the POST request.
+            ValueError: If neither 'data' nor 'json' is provided for the POST request, or if sleep interval is invalid.
             requests.exceptions.RequestException: If an error occurs during the POST request.
         """
         try:
-            if sleep:
-                # Add a random sleep interval between 2 to 5 seconds
-                time.sleep(random.uniform(2, 5))
+            if sleep is not None:
+                if isinstance(sleep, tuple):
+                    sleep_before, sleep_after = sleep
+                else:
+                    sleep_before = 0
+                    sleep_after = sleep
+                if sleep_before >= 0 and sleep_after > sleep_before:
+                    # Add a random sleep interval between two numbers
+                    try:
+                        time.sleep(random.uniform(sleep_before, sleep_after))
+                    except Exception as e:
+                        print(e)
+                else:
+                    raise ValueError(
+                        'Invalid sleep interval: The start value of sleep must be greater than or equal to 0, '
+                        'and the end value must be greater than the start value.'
+                    )
 
             # Set the Referer header to the specified value or the URL if not provided
             if referer:
@@ -211,6 +258,10 @@ class ScrapeMyst:
 
             # Rotate the "User-Agent" header by selecting a random user-agent string from the list.
             self.headers["User-Agent"] = random.choice(self.user_agents)
+
+            if verbose:
+                for key, value in self.headers.items():
+                    print(f'{key}\t-\t{value}\n')
 
             # Send the POST request with either form data or JSON data
             if data:
@@ -231,8 +282,16 @@ class ScrapeMyst:
                 'success': True,
                 'data': response
             }
+        except ValueError as ve:
+            # Handle the specific ValueError and log an error message
+            print(f"ValueError: {ve}")
+            return {
+                'status_code': None,
+                'success': False,
+                'error_message': str(ve)
+            }
         except requests.exceptions.RequestException as e:
-            # Handle any exceptions and log an error message
+            # Handle any other exceptions and log an error message
             print(f"POST request failed: {e}")
             return {
                 'status_code': None,

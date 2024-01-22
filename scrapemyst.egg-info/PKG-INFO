@@ -1,12 +1,12 @@
 Metadata-Version: 2.1
 Name: scrapemyst
-Version: 0.4
+Version: 1.0
 Summary: A class for sending web requests with customizable headers and user-agents.
 Home-page: https://github.com/E4crypt3d/ScrapeMyst
 Author: E4crypt3d
 Author-email: gohramgkb@gmail.com
 Project-URL: Source, https://github.com/E4crypt3d/ScrapeMyst
-Project-URL: Download, https://pypi.org/project/scrapemyst/0.4/
+Project-URL: Download, https://pypi.org/project/scrapemyst/1.0/
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
