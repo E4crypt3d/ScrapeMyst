@@ -1,34 +1,38 @@
-# Read the Docs configuration file for Sphinx projects
-# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+version: 3
 
-# Required
-version: 1.0.2
-
-# Set the OS, Python version and other tools you might need
-build:
-  os: OS Independent
-  tools:
-    python: "3.11"
-    # You can also specify other tool versions:
-    # nodejs: "20"
-    # rust: "1.70"
-    # golang: "1.20"
-
-# Build documentation in the "docs/" directory with Sphinx
 sphinx:
   configuration: docs/conf.py
-  # You can configure Sphinx to use a different builder, for instance use the dirhtml builder for simpler URLs
-  # builder: "dirhtml"
-  # Fail on all warnings to avoid broken references
-  # fail_on_warning: true
-# Optionally build your docs in additional formats such as PDF and ePub
-# formats:
-#   - pdf
-#   - epub
 
-# Optional but recommended, declare the Python requirements required
-# to build your documentation
-# See https://docs.readthedocs.io/en/stable/guides/reproducible-builds.html
-# python:
-#   install:
-#     - requirements: docs/requirements.txt
+python:
+  version: 3.11
+
+build:
+  image: latest
+
+formats: all
+
+docs_dir: docs
+
+python_install:
+  use_system_site_packages: false
+
+dependencies:
+  # Add any dependencies required for building your documentation here
+  - sphinx
+  - sphinx-rtd-theme
+
+whitelist:
+  # Add paths to directories or files you want to include in the documentation build
+  - README.md
+  - docs/*
+  # Add other necessary paths
+
+# Settings for automatic building of documentation
+autobuild:
+  # Enable automatic building on changes to the project
+  enabled: true
+
+  # Specify the branches you want to build documentation for
+  branches:
+    only:
+      - master # Only build docs for the master branch
