@@ -1,7 +1,7 @@
 import requests
 import random
 import time
-
+from typing import List, Optional, Dict, Union, Tuple
 
 class ScrapeMyst:
     """
@@ -32,7 +32,7 @@ class ScrapeMyst:
                    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36",
                    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:15.0) Gecko/20100101 Firefox/15.0.1"]
 
-    def __init__(self, proxies=None):
+    def __init__(self, proxies : Optional[List] = None):
         """
         Initialize a ScrapeMyst instance with headers and an optional proxy.
 
@@ -53,7 +53,7 @@ class ScrapeMyst:
         try:
             self.session = requests.Session()
 
-            self.headers = {
+            self.headers =  {
                 "User-Agent": None,
                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
                 "Accept-Language": "en-US,en;q=0.9",
@@ -70,11 +70,11 @@ class ScrapeMyst:
                     'http': f'{proxy}'
                 }
             else:
-                self.proxies = None
+                self.proxies : List = None
         except Exception as e:
             print("Something Went Wrong : {e}")
 
-    def update_headers(self, headers, replace=False):
+    def update_headers(self, headers : Dict, replace : Optional[bool] = False) -> None:
         """
         Update the request headers with the provided headers.
 
@@ -111,7 +111,7 @@ class ScrapeMyst:
             # Handle any exceptions and log an error message
             print(f'Error while updating headers: {e}')
 
-    def send_get(self, url, params=None, sleep=None, referer=None, verbose=False):
+    def send_get(self, url : str, params : Optional[Dict] = None, sleep : Optional[Union[int, float, Tuple]] = None, referer : Optional[str] = None, verbose : Optional[bool] = False) -> Dict:
         """
         Send a GET request with customizable settings.
 
@@ -202,7 +202,7 @@ class ScrapeMyst:
                 'error_message': str(e)
             }
 
-    def send_post(self, url, data=None, json=None, sleep=None, referer=None, verbose=False):
+    def send_post(self, url : str, data : Optional[Dict] = None, json : Optional[Dict] = None, sleep : Optional[Union[int, float, Tuple]] = None, referer : Optional[str] = None, verbose : Optional[bool] = False) -> Dict:
         """
         Send a POST request with customizable settings.
 
