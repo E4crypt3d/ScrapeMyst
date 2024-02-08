@@ -14,7 +14,7 @@ pip install scrapemyst
 
 ```python
 # Import the ScrapeMyst class
-from scrapemyst.ScrapeMyst import ScrapeMyst
+from scrapemyst import ScrapeMyst
 
 # Create an instance of ScrapeMyst, optionally providing a list of proxy URLs
 scrapemyst = ScrapeMyst(proxies=["127.0.0.1:8000", "example.com:8080"])
@@ -22,7 +22,7 @@ scrapemyst = ScrapeMyst(proxies=["127.0.0.1:8000", "example.com:8080"])
 # OR
 
 # Import the ScrapeMyst object directly if you are not providing list of proxy urls
-from scrapemyst.ScrapeMyst import scrapemyst
+from scrapemyst import scrapemyst
 
 
 # Example of sending a GET request

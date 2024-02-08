@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='scrapemyst',
-    version='1.0',
+    version='1.0.1',
     packages=find_packages(),
     install_requires=[
         'requests',
@@ -20,6 +20,6 @@ setup(
     ],
     project_urls={
         'Source': 'https://github.com/E4crypt3d/ScrapeMyst',
-        'Download': 'https://pypi.org/project/scrapemyst/1.0/',
+        'Download': 'https://pypi.org/project/scrapemyst/1.0.1/',
     },
 )
