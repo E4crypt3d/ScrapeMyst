@@ -36,7 +36,7 @@ if get_response['success']:
 # Example of sending a POST request with form data
 url_post_form = "https://www.example.com/post"
 form_data = {"key1": "value1", "key2": "value2"}
-post_response_form = scrapemyst.send_post(url_post_form, data=form_data, sleep=True, referer="https://www.referer.com")
+post_response_form = scrapemyst.send_post(url_post_form, data=form_data, sleep=4.5, referer="https://www.referer.com")
 
 if post_response_form['success']:
     print(f"POST Request (Form Data) Successful. Status Code: {post_response_form['status_code']}")
