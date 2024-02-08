@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scrapemyst.ScrapeMyst &#8212; ScrapeMyst 1.0.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="../../_static/groundwork.css?v=594d7a89" />
+    <script src="../../_static/documentation_options.js?v=1ed6394b"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">ScrapeMyst 1.0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scrapemyst.ScrapeMyst</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for scrapemyst.ScrapeMyst</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<div class="viewcode-block" id="ScrapeMyst">
+<a class="viewcode-back" href="../../scrapemyst.html#scrapemyst.ScrapeMyst.ScrapeMyst">[docs]</a>
+<span class="k">class</span> <span class="nc">ScrapeMyst</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class for sending web requests with customizable headers and user-agents.</span>
+
+<span class="sd">    This class provides methods for sending both GET and POST requests with customizable</span>
+<span class="sd">    headers, user-agents, and optional proxy support. It also includes features for adding</span>
+<span class="sd">    random sleep intervals before making requests to simulate human-like behavior.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        user_agents (list): A list of user-agent strings used in requests to mimic various web browsers and clients.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        __init__(self, proxy=None): Initialize a ScrapeMyst instance with headers and an optional list proxies.</span>
+<span class="sd">        send_get(self, url, params=None, sleep=None, referer=None): Send a GET request with customizable settings.</span>
+<span class="sd">        send_post(self, url, data=None, json=None, sleep=None, referer=None): Send a POST request with customizable settings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">user_agents</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.48&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 OPR/77.0.4054.257&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; Trident/7.0; rv:11.0) like Gecko&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;Mozilla/5.0 (Linux; Android 10; Pixel 4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Mobile Safari/537.36&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;Mozilla/5.0 (X11; CrOS x86_64 8172.45.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.64 Safari/537.36&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:15.0) Gecko/20100101 Firefox/15.0.1&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proxies</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize a ScrapeMyst instance with headers and an optional proxy.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            proxies (list, optional): A list of proxy URLs to choose from for requests.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: If there is an issue during initialization.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            To create a ScrapeMyst instance with a list of proxy URLs, you can use the following code:</span>
+
+<span class="sd">            ```python</span>
+<span class="sd">            proxies = [&quot;127.0.0.1:8000&quot;, &quot;example.com:8080&quot;]</span>
+<span class="sd">            scrapemyst = ScrapeMyst(proxies=proxies)</span>
+<span class="sd">            ```</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span>  <span class="p">{</span>
+                <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;Accept&quot;</span><span class="p">:</span> <span class="s2">&quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Accept-Language&quot;</span><span class="p">:</span> <span class="s2">&quot;en-US,en;q=0.9&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Accept-Encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;gzip, deflate, br&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Connection&quot;</span><span class="p">:</span> <span class="s2">&quot;keep-alive&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Upgrade-Insecure-Requests&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Referer&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="n">proxies</span><span class="p">:</span>
+                <span class="n">proxy</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">proxies</span><span class="p">)</span>
+                <span class="n">proxy</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;http://</span><span class="si">{</span><span class="n">proxy</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">proxies</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;http&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">proxy</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">proxies</span> <span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something Went Wrong : </span><span class="si">{e}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ScrapeMyst.update_headers">
+<a class="viewcode-back" href="../../scrapemyst.html#scrapemyst.ScrapeMyst.ScrapeMyst.update_headers">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span> <span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">replace</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the request headers with the provided headers.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            headers (dict): A dictionary of headers to update the request headers with.</span>
+<span class="sd">            replace (bool, optional): If True, replace the existing headers with the provided headers.</span>
+<span class="sd">                If False (default), update the existing headers with the provided ones.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: If there is an issue during the header update, such as a non-dictionary input.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            To update the headers with custom headers, you can use the following code:</span>
+
+<span class="sd">            ```python</span>
+<span class="sd">            custom_headers = {</span>
+<span class="sd">                &quot;User-Agent&quot;: &quot;MyCustomUserAgent&quot;,</span>
+<span class="sd">                &quot;Accept-Language&quot;: &quot;en-US&quot;,</span>
+<span class="sd">                &quot;X-Custom-Header&quot;: &quot;CustomValue&quot;</span>
+<span class="sd">            }</span>
+<span class="sd">            scrapemyst.update_headers(custom_headers)</span>
+<span class="sd">            ```</span>
+
+<span class="sd">            To replace the existing headers with custom headers, you can set `replace=True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">replace</span><span class="p">:</span>
+                <span class="c1"># If replace is True, set the headers to the provided headers.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># If replace is False (default), update the existing headers with the provided ones.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># Handle any exceptions and log an error message</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error while updating headers: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ScrapeMyst.send_get">
+<a class="viewcode-back" href="../../scrapemyst.html#scrapemyst.ScrapeMyst.ScrapeMyst.send_get">[docs]</a>
+    <span class="k">def</span> <span class="nf">send_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">sleep</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">referer</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Send a GET request with customizable settings.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            url (str): The URL to send the GET request to.</span>
+<span class="sd">            params (dict, optional): Query parameters to include in the request.</span>
+<span class="sd">            sleep (int, float, tuple, optional): If specified, adds a random sleep interval before making the request.</span>
+<span class="sd">                - If an integer or float, it represents the sleep duration in seconds after which the request is made.</span>
+<span class="sd">                - If a tuple (start, end), adds a random sleep interval between start and end seconds before the request.</span>
+
+<span class="sd">            referer (str, optional): The referer to set in the request headers. Defaults to the request URL if not provided.</span>
+<span class="sd">            verbose (bool, optional): If True, prints the request headers before sending the request.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict or None: A dictionary containing status information and the response object if the request is successful,</span>
+<span class="sd">            or None if there&#39;s an error.</span>
+
+<span class="sd">            The dictionary has the following structure:</span>
+<span class="sd">            {</span>
+<span class="sd">                &#39;status_code&#39;: int,      # HTTP status code of the response</span>
+<span class="sd">                &#39;success&#39;: bool,         # True if the request is successful, False if there&#39;s an error</span>
+<span class="sd">                &#39;data&#39;: requests.Response or None  # The response object if successful, or None if there&#39;s an error</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If sleep interval is invalid.</span>
+<span class="sd">            requests.exceptions.RequestException: If an error occurs during the GET request.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sleep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                    <span class="n">sleep_before</span><span class="p">,</span> <span class="n">sleep_after</span> <span class="o">=</span> <span class="n">sleep</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">sleep_before</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">sleep_after</span> <span class="o">=</span> <span class="n">sleep</span>
+                <span class="k">if</span> <span class="n">sleep_before</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sleep_after</span> <span class="o">&gt;</span> <span class="n">sleep_before</span><span class="p">:</span>
+                    <span class="c1"># Add a random sleep interval between two numbers</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">sleep_before</span><span class="p">,</span> <span class="n">sleep_after</span><span class="p">))</span>
+                    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s1">&#39;Invalid sleep interval: The start value of sleep must be greater than or equal to 0, &#39;</span>
+                        <span class="s1">&#39;and the end value must be greater than the start value.&#39;</span>
+                    <span class="p">)</span>
+
+            <span class="c1"># Set the Referer header to the specified value or the URL if not provided</span>
+            <span class="k">if</span> <span class="n">referer</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Referer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">referer</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Referer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
+
+            <span class="c1"># Rotate the &quot;User-Agent&quot; header by selecting a random user-agent string from the list.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;User-Agent&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_agents</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="se">\t</span><span class="s1">-</span><span class="se">\t</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Send the GET request</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxies</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+
+            <span class="c1"># Check if the response has a successful status code</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;status_code&#39;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+                <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">response</span>
+            <span class="p">}</span>
+
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">ve</span><span class="p">:</span>
+            <span class="c1"># Handle the specific ValueError and log an error message</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ValueError: </span><span class="si">{</span><span class="n">ve</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;status_code&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s1">&#39;error_message&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">ve</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># Handle any other exceptions and log an error message</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Get request failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;status_code&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s1">&#39;error_message&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="ScrapeMyst.send_post">
+<a class="viewcode-back" href="../../scrapemyst.html#scrapemyst.ScrapeMyst.ScrapeMyst.send_post">[docs]</a>
+    <span class="k">def</span> <span class="nf">send_post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">json</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">sleep</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">referer</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Send a POST request with customizable settings.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            url (str): The URL to send the POST request to.</span>
+<span class="sd">            data (dict, optional): Form data to include in the request body.</span>
+<span class="sd">            json (dict, optional): JSON data to include in the request body.</span>
+<span class="sd">            sleep (int, float, tuple, optional): If specified, adds a random sleep interval before making the request.</span>
+<span class="sd">                - If an integer or float, it represents the sleep duration in seconds after which the request is made.</span>
+<span class="sd">                - If a tuple (start, end), adds a random sleep interval between start and end seconds before the request.</span>
+<span class="sd">            referer (str, optional): The referer to set in the request headers. Defaults to the request URL if not provided.</span>
+<span class="sd">            verbose (bool, optional): If True, prints the request headers before sending the request.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict or None: A dictionary containing status information and the response object if the request is successful,</span>
+<span class="sd">            or None if there&#39;s an error.</span>
+
+<span class="sd">            The dictionary has the following structure:</span>
+<span class="sd">            {</span>
+<span class="sd">                &#39;status_code&#39;: int,      # HTTP status code of the response</span>
+<span class="sd">                &#39;success&#39;: bool,         # True if the request is successful, False if there&#39;s an error</span>
+<span class="sd">                &#39;data&#39;: requests.Response or None  # The response object if successful, or None if there&#39;s an error</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If neither &#39;data&#39; nor &#39;json&#39; is provided for the POST request, or if sleep interval is invalid.</span>
+<span class="sd">            requests.exceptions.RequestException: If an error occurs during the POST request.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sleep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                    <span class="n">sleep_before</span><span class="p">,</span> <span class="n">sleep_after</span> <span class="o">=</span> <span class="n">sleep</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">sleep_before</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">sleep_after</span> <span class="o">=</span> <span class="n">sleep</span>
+                <span class="k">if</span> <span class="n">sleep_before</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sleep_after</span> <span class="o">&gt;</span> <span class="n">sleep_before</span><span class="p">:</span>
+                    <span class="c1"># Add a random sleep interval between two numbers</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">sleep_before</span><span class="p">,</span> <span class="n">sleep_after</span><span class="p">))</span>
+                    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s1">&#39;Invalid sleep interval: The start value of sleep must be greater than or equal to 0, &#39;</span>
+                        <span class="s1">&#39;and the end value must be greater than the start value.&#39;</span>
+                    <span class="p">)</span>
+
+            <span class="c1"># Set the Referer header to the specified value or the URL if not provided</span>
+            <span class="k">if</span> <span class="n">referer</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Referer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">referer</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Referer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
+
+            <span class="c1"># Rotate the &quot;User-Agent&quot; header by selecting a random user-agent string from the list.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;User-Agent&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_agents</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="se">\t</span><span class="s1">-</span><span class="se">\t</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Send the POST request with either form data or JSON data</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+                    <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxies</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">json</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+                    <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxies</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxies</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Either &#39;data&#39; or &#39;json&#39; must be provided for the POST request.&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Check if the response has a successful status code</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;status_code&#39;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+                <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">response</span>
+            <span class="p">}</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">ve</span><span class="p">:</span>
+            <span class="c1"># Handle the specific ValueError and log an error message</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ValueError: </span><span class="si">{</span><span class="n">ve</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;status_code&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s1">&#39;error_message&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">ve</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># Handle any other exceptions and log an error message</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;POST request failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;status_code&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s1">&#39;error_message&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="p">}</span></div>
+</div>
+
+
+
+<span class="c1"># creating a object of the class</span>
+<span class="n">scrapemyst</span> <span class="o">=</span> <span class="n">ScrapeMyst</span><span class="p">()</span>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">ScrapeMyst 1.0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">scrapemyst.ScrapeMyst</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, E4CRYPT3D.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>scrapemyst package &mdash; ScrapeMyst 1.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=1ed6394b"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ScrapeMyst
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">scrapemyst package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-scrapemyst.ScrapeMyst">scrapemyst.ScrapeMyst module</a><ul>
+<li><a class="reference internal" href="#scrapemyst.ScrapeMyst.ScrapeMyst"><code class="docutils literal notranslate"><span class="pre">ScrapeMyst</span></code></a><ul>
+<li><a class="reference internal" href="#scrapemyst.ScrapeMyst.ScrapeMyst.send_get"><code class="docutils literal notranslate"><span class="pre">ScrapeMyst.send_get()</span></code></a></li>
+<li><a class="reference internal" href="#scrapemyst.ScrapeMyst.ScrapeMyst.send_post"><code class="docutils literal notranslate"><span class="pre">ScrapeMyst.send_post()</span></code></a></li>
+<li><a class="reference internal" href="#scrapemyst.ScrapeMyst.ScrapeMyst.update_headers"><code class="docutils literal notranslate"><span class="pre">ScrapeMyst.update_headers()</span></code></a></li>
+<li><a class="reference internal" href="#scrapemyst.ScrapeMyst.ScrapeMyst.user_agents"><code class="docutils literal notranslate"><span class="pre">ScrapeMyst.user_agents</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-scrapemyst">Module contents</a><ul>
+<li><a class="reference internal" href="#scrapemyst.ScrapeMyst"><code class="docutils literal notranslate"><span class="pre">ScrapeMyst</span></code></a><ul>
+<li><a class="reference internal" href="#scrapemyst.ScrapeMyst.proxies"><code class="docutils literal notranslate"><span class="pre">ScrapeMyst.proxies</span></code></a></li>
+<li><a class="reference internal" href="#scrapemyst.ScrapeMyst.send_get"><code class="docutils literal notranslate"><span class="pre">ScrapeMyst.send_get()</span></code></a></li>
+<li><a class="reference internal" href="#scrapemyst.ScrapeMyst.send_post"><code class="docutils literal notranslate"><span class="pre">ScrapeMyst.send_post()</span></code></a></li>
+<li><a class="reference internal" href="#scrapemyst.ScrapeMyst.update_headers"><code class="docutils literal notranslate"><span class="pre">ScrapeMyst.update_headers()</span></code></a></li>
+<li><a class="reference internal" href="#scrapemyst.ScrapeMyst.user_agents"><code class="docutils literal notranslate"><span class="pre">ScrapeMyst.user_agents</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ScrapeMyst</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">scrapemyst package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/scrapemyst.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scrapemyst-package">
+<h1>scrapemyst package<a class="headerlink" href="#scrapemyst-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-scrapemyst.ScrapeMyst">
+<span id="scrapemyst-scrapemyst-module"></span><h2>scrapemyst.ScrapeMyst module<a class="headerlink" href="#module-scrapemyst.ScrapeMyst" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scrapemyst.ScrapeMyst.ScrapeMyst">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">scrapemyst.ScrapeMyst.</span></span><span class="sig-name descname"><span class="pre">ScrapeMyst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proxies</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scrapemyst/ScrapeMyst.html#ScrapeMyst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scrapemyst.ScrapeMyst.ScrapeMyst" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class for sending web requests with customizable headers and user-agents.</p>
+<p>This class provides methods for sending both GET and POST requests with customizable
+headers, user-agents, and optional proxy support. It also includes features for adding
+random sleep intervals before making requests to simulate human-like behavior.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>user_agents (list): A list of user-agent strings used in requests to mimic various web browsers and clients.</p>
+</dd>
+<dt>Methods:</dt><dd><p>__init__(self, proxy=None): Initialize a ScrapeMyst instance with headers and an optional list proxies.
+send_get(self, url, params=None, sleep=None, referer=None): Send a GET request with customizable settings.
+send_post(self, url, data=None, json=None, sleep=None, referer=None): Send a POST request with customizable settings.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="scrapemyst.ScrapeMyst.ScrapeMyst.send_get">
+<span class="sig-name descname"><span class="pre">send_get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">referer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="_modules/scrapemyst/ScrapeMyst.html#ScrapeMyst.send_get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scrapemyst.ScrapeMyst.ScrapeMyst.send_get" title="Link to this definition"></a></dt>
+<dd><p>Send a GET request with customizable settings.</p>
+<dl>
+<dt>Args:</dt><dd><p>url (str): The URL to send the GET request to.
+params (dict, optional): Query parameters to include in the request.
+sleep (int, float, tuple, optional): If specified, adds a random sleep interval before making the request.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If an integer or float, it represents the sleep duration in seconds after which the request is made.</p></li>
+<li><p>If a tuple (start, end), adds a random sleep interval between start and end seconds before the request.</p></li>
+</ul>
+</div></blockquote>
+<p>referer (str, optional): The referer to set in the request headers. Defaults to the request URL if not provided.
+verbose (bool, optional): If True, prints the request headers before sending the request.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict or None: A dictionary containing status information and the response object if the request is successful,
+or None if there’s an error.</p>
+<p>The dictionary has the following structure:
+{</p>
+<blockquote>
+<div><p>‘status_code’: int,      # HTTP status code of the response
+‘success’: bool,         # True if the request is successful, False if there’s an error
+‘data’: requests.Response or None  # The response object if successful, or None if there’s an error</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+<dt>Raises:</dt><dd><p>ValueError: If sleep interval is invalid.
+requests.exceptions.RequestException: If an error occurs during the GET request.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scrapemyst.ScrapeMyst.ScrapeMyst.send_post">
+<span class="sig-name descname"><span class="pre">send_post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">referer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="_modules/scrapemyst/ScrapeMyst.html#ScrapeMyst.send_post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scrapemyst.ScrapeMyst.ScrapeMyst.send_post" title="Link to this definition"></a></dt>
+<dd><p>Send a POST request with customizable settings.</p>
+<dl>
+<dt>Args:</dt><dd><p>url (str): The URL to send the POST request to.
+data (dict, optional): Form data to include in the request body.
+json (dict, optional): JSON data to include in the request body.
+sleep (int, float, tuple, optional): If specified, adds a random sleep interval before making the request.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If an integer or float, it represents the sleep duration in seconds after which the request is made.</p></li>
+<li><p>If a tuple (start, end), adds a random sleep interval between start and end seconds before the request.</p></li>
+</ul>
+</div></blockquote>
+<p>referer (str, optional): The referer to set in the request headers. Defaults to the request URL if not provided.
+verbose (bool, optional): If True, prints the request headers before sending the request.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict or None: A dictionary containing status information and the response object if the request is successful,
+or None if there’s an error.</p>
+<p>The dictionary has the following structure:
+{</p>
+<blockquote>
+<div><p>‘status_code’: int,      # HTTP status code of the response
+‘success’: bool,         # True if the request is successful, False if there’s an error
+‘data’: requests.Response or None  # The response object if successful, or None if there’s an error</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+<dt>Raises:</dt><dd><p>ValueError: If neither ‘data’ nor ‘json’ is provided for the POST request, or if sleep interval is invalid.
+requests.exceptions.RequestException: If an error occurs during the POST request.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scrapemyst.ScrapeMyst.ScrapeMyst.update_headers">
+<span class="sig-name descname"><span class="pre">update_headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/scrapemyst/ScrapeMyst.html#ScrapeMyst.update_headers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scrapemyst.ScrapeMyst.ScrapeMyst.update_headers" title="Link to this definition"></a></dt>
+<dd><p>Update the request headers with the provided headers.</p>
+<dl>
+<dt>Args:</dt><dd><p>headers (dict): A dictionary of headers to update the request headers with.
+replace (bool, optional): If True, replace the existing headers with the provided headers.</p>
+<blockquote>
+<div><p>If False (default), update the existing headers with the provided ones.</p>
+</div></blockquote>
+</dd>
+<dt>Raises:</dt><dd><p>Exception: If there is an issue during the header update, such as a non-dictionary input.</p>
+</dd>
+<dt>Example:</dt><dd><p>To update the headers with custom headers, you can use the following code:</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python
+custom_headers = {</p>
+<blockquote>
+<div><p>“User-Agent”: “MyCustomUserAgent”,
+“Accept-Language”: “en-US”,
+“X-Custom-Header”: “CustomValue”</p>
+</div></blockquote>
+<p>}
+scrapemyst.update_headers(custom_headers)
+<a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p>To replace the existing headers with custom headers, you can set <cite>replace=True</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scrapemyst.ScrapeMyst.ScrapeMyst.user_agents">
+<span class="sig-name descname"><span class="pre">user_agents</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">10.0;</span> <span class="pre">Win64;</span> <span class="pre">x64)</span> <span class="pre">AppleWebKit/537.36</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Chrome/91.0.4472.124</span> <span class="pre">Safari/537.36',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">10.0;</span> <span class="pre">Win64;</span> <span class="pre">x64;</span> <span class="pre">rv:89.0)</span> <span class="pre">Gecko/20100101</span> <span class="pre">Firefox/89.0',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Macintosh;</span> <span class="pre">Intel</span> <span class="pre">Mac</span> <span class="pre">OS</span> <span class="pre">X</span> <span class="pre">10_15_7)</span> <span class="pre">AppleWebKit/605.1.15</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Version/14.1.1</span> <span class="pre">Safari/605.1.15',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">10.0;</span> <span class="pre">Win64;</span> <span class="pre">x64)</span> <span class="pre">AppleWebKit/537.36</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Chrome/91.0.4472.124</span> <span class="pre">Safari/537.36</span> <span class="pre">Edg/91.0.864.48',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">10.0;</span> <span class="pre">Win64;</span> <span class="pre">x64)</span> <span class="pre">AppleWebKit/537.36</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Chrome/91.0.4472.124</span> <span class="pre">Safari/537.36</span> <span class="pre">OPR/77.0.4054.257',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">10.0;</span> <span class="pre">Win64;</span> <span class="pre">x64;</span> <span class="pre">Trident/7.0;</span> <span class="pre">rv:11.0)</span> <span class="pre">like</span> <span class="pre">Gecko',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Linux;</span> <span class="pre">Android</span> <span class="pre">10;</span> <span class="pre">Pixel</span> <span class="pre">4)</span> <span class="pre">AppleWebKit/537.36</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Chrome/91.0.4472.124</span> <span class="pre">Mobile</span> <span class="pre">Safari/537.36',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">10.0;</span> <span class="pre">Win64;</span> <span class="pre">x64)</span> <span class="pre">AppleWebKit/537.36</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Chrome/42.0.2311.135</span> <span class="pre">Safari/537.36</span> <span class="pre">Edge/12.246',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(X11;</span> <span class="pre">CrOS</span> <span class="pre">x86_64</span> <span class="pre">8172.45.0)</span> <span class="pre">AppleWebKit/537.36</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Chrome/51.0.2704.64</span> <span class="pre">Safari/537.36',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Macintosh;</span> <span class="pre">Intel</span> <span class="pre">Mac</span> <span class="pre">OS</span> <span class="pre">X</span> <span class="pre">10_11_2)</span> <span class="pre">AppleWebKit/601.3.9</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Version/9.0.2</span> <span class="pre">Safari/601.3.9',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">6.1;</span> <span class="pre">WOW64)</span> <span class="pre">AppleWebKit/537.36</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Chrome/47.0.2526.111</span> <span class="pre">Safari/537.36',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(X11;</span> <span class="pre">Ubuntu;</span> <span class="pre">Linux</span> <span class="pre">x86_64;</span> <span class="pre">rv:15.0)</span> <span class="pre">Gecko/20100101</span> <span class="pre">Firefox/15.0.1']</span></em><a class="headerlink" href="#scrapemyst.ScrapeMyst.ScrapeMyst.user_agents" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scrapemyst">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-scrapemyst" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scrapemyst.ScrapeMyst">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">scrapemyst.</span></span><span class="sig-name descname"><span class="pre">ScrapeMyst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proxies</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scrapemyst/ScrapeMyst.html#ScrapeMyst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scrapemyst.ScrapeMyst" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class for sending web requests with customizable headers and user-agents.</p>
+<p>This class provides methods for sending both GET and POST requests with customizable
+headers, user-agents, and optional proxy support. It also includes features for adding
+random sleep intervals before making requests to simulate human-like behavior.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>user_agents (list): A list of user-agent strings used in requests to mimic various web browsers and clients.</p>
+</dd>
+<dt>Methods:</dt><dd><p>__init__(self, proxy=None): Initialize a ScrapeMyst instance with headers and an optional list proxies.
+send_get(self, url, params=None, sleep=None, referer=None): Send a GET request with customizable settings.
+send_post(self, url, data=None, json=None, sleep=None, referer=None): Send a POST request with customizable settings.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scrapemyst.ScrapeMyst.proxies">
+<span class="sig-name descname"><span class="pre">proxies</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#scrapemyst.ScrapeMyst.proxies" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scrapemyst.ScrapeMyst.send_get">
+<span class="sig-name descname"><span class="pre">send_get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">referer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="_modules/scrapemyst/ScrapeMyst.html#ScrapeMyst.send_get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scrapemyst.ScrapeMyst.send_get" title="Link to this definition"></a></dt>
+<dd><p>Send a GET request with customizable settings.</p>
+<dl>
+<dt>Args:</dt><dd><p>url (str): The URL to send the GET request to.
+params (dict, optional): Query parameters to include in the request.
+sleep (int, float, tuple, optional): If specified, adds a random sleep interval before making the request.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If an integer or float, it represents the sleep duration in seconds after which the request is made.</p></li>
+<li><p>If a tuple (start, end), adds a random sleep interval between start and end seconds before the request.</p></li>
+</ul>
+</div></blockquote>
+<p>referer (str, optional): The referer to set in the request headers. Defaults to the request URL if not provided.
+verbose (bool, optional): If True, prints the request headers before sending the request.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict or None: A dictionary containing status information and the response object if the request is successful,
+or None if there’s an error.</p>
+<p>The dictionary has the following structure:
+{</p>
+<blockquote>
+<div><p>‘status_code’: int,      # HTTP status code of the response
+‘success’: bool,         # True if the request is successful, False if there’s an error
+‘data’: requests.Response or None  # The response object if successful, or None if there’s an error</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+<dt>Raises:</dt><dd><p>ValueError: If sleep interval is invalid.
+requests.exceptions.RequestException: If an error occurs during the GET request.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scrapemyst.ScrapeMyst.send_post">
+<span class="sig-name descname"><span class="pre">send_post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">referer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="_modules/scrapemyst/ScrapeMyst.html#ScrapeMyst.send_post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scrapemyst.ScrapeMyst.send_post" title="Link to this definition"></a></dt>
+<dd><p>Send a POST request with customizable settings.</p>
+<dl>
+<dt>Args:</dt><dd><p>url (str): The URL to send the POST request to.
+data (dict, optional): Form data to include in the request body.
+json (dict, optional): JSON data to include in the request body.
+sleep (int, float, tuple, optional): If specified, adds a random sleep interval before making the request.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If an integer or float, it represents the sleep duration in seconds after which the request is made.</p></li>
+<li><p>If a tuple (start, end), adds a random sleep interval between start and end seconds before the request.</p></li>
+</ul>
+</div></blockquote>
+<p>referer (str, optional): The referer to set in the request headers. Defaults to the request URL if not provided.
+verbose (bool, optional): If True, prints the request headers before sending the request.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict or None: A dictionary containing status information and the response object if the request is successful,
+or None if there’s an error.</p>
+<p>The dictionary has the following structure:
+{</p>
+<blockquote>
+<div><p>‘status_code’: int,      # HTTP status code of the response
+‘success’: bool,         # True if the request is successful, False if there’s an error
+‘data’: requests.Response or None  # The response object if successful, or None if there’s an error</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+<dt>Raises:</dt><dd><p>ValueError: If neither ‘data’ nor ‘json’ is provided for the POST request, or if sleep interval is invalid.
+requests.exceptions.RequestException: If an error occurs during the POST request.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scrapemyst.ScrapeMyst.update_headers">
+<span class="sig-name descname"><span class="pre">update_headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/scrapemyst/ScrapeMyst.html#ScrapeMyst.update_headers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scrapemyst.ScrapeMyst.update_headers" title="Link to this definition"></a></dt>
+<dd><p>Update the request headers with the provided headers.</p>
+<dl>
+<dt>Args:</dt><dd><p>headers (dict): A dictionary of headers to update the request headers with.
+replace (bool, optional): If True, replace the existing headers with the provided headers.</p>
+<blockquote>
+<div><p>If False (default), update the existing headers with the provided ones.</p>
+</div></blockquote>
+</dd>
+<dt>Raises:</dt><dd><p>Exception: If there is an issue during the header update, such as a non-dictionary input.</p>
+</dd>
+<dt>Example:</dt><dd><p>To update the headers with custom headers, you can use the following code:</p>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>python
+custom_headers = {</p>
+<blockquote>
+<div><p>“User-Agent”: “MyCustomUserAgent”,
+“Accept-Language”: “en-US”,
+“X-Custom-Header”: “CustomValue”</p>
+</div></blockquote>
+<p>}
+scrapemyst.update_headers(custom_headers)
+<a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
+<p>To replace the existing headers with custom headers, you can set <cite>replace=True</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scrapemyst.ScrapeMyst.user_agents">
+<span class="sig-name descname"><span class="pre">user_agents</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">10.0;</span> <span class="pre">Win64;</span> <span class="pre">x64)</span> <span class="pre">AppleWebKit/537.36</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Chrome/91.0.4472.124</span> <span class="pre">Safari/537.36',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">10.0;</span> <span class="pre">Win64;</span> <span class="pre">x64;</span> <span class="pre">rv:89.0)</span> <span class="pre">Gecko/20100101</span> <span class="pre">Firefox/89.0',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Macintosh;</span> <span class="pre">Intel</span> <span class="pre">Mac</span> <span class="pre">OS</span> <span class="pre">X</span> <span class="pre">10_15_7)</span> <span class="pre">AppleWebKit/605.1.15</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Version/14.1.1</span> <span class="pre">Safari/605.1.15',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">10.0;</span> <span class="pre">Win64;</span> <span class="pre">x64)</span> <span class="pre">AppleWebKit/537.36</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Chrome/91.0.4472.124</span> <span class="pre">Safari/537.36</span> <span class="pre">Edg/91.0.864.48',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">10.0;</span> <span class="pre">Win64;</span> <span class="pre">x64)</span> <span class="pre">AppleWebKit/537.36</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Chrome/91.0.4472.124</span> <span class="pre">Safari/537.36</span> <span class="pre">OPR/77.0.4054.257',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">10.0;</span> <span class="pre">Win64;</span> <span class="pre">x64;</span> <span class="pre">Trident/7.0;</span> <span class="pre">rv:11.0)</span> <span class="pre">like</span> <span class="pre">Gecko',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Linux;</span> <span class="pre">Android</span> <span class="pre">10;</span> <span class="pre">Pixel</span> <span class="pre">4)</span> <span class="pre">AppleWebKit/537.36</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Chrome/91.0.4472.124</span> <span class="pre">Mobile</span> <span class="pre">Safari/537.36',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">10.0;</span> <span class="pre">Win64;</span> <span class="pre">x64)</span> <span class="pre">AppleWebKit/537.36</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Chrome/42.0.2311.135</span> <span class="pre">Safari/537.36</span> <span class="pre">Edge/12.246',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(X11;</span> <span class="pre">CrOS</span> <span class="pre">x86_64</span> <span class="pre">8172.45.0)</span> <span class="pre">AppleWebKit/537.36</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Chrome/51.0.2704.64</span> <span class="pre">Safari/537.36',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Macintosh;</span> <span class="pre">Intel</span> <span class="pre">Mac</span> <span class="pre">OS</span> <span class="pre">X</span> <span class="pre">10_11_2)</span> <span class="pre">AppleWebKit/601.3.9</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Version/9.0.2</span> <span class="pre">Safari/601.3.9',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">6.1;</span> <span class="pre">WOW64)</span> <span class="pre">AppleWebKit/537.36</span> <span class="pre">(KHTML,</span> <span class="pre">like</span> <span class="pre">Gecko)</span> <span class="pre">Chrome/47.0.2526.111</span> <span class="pre">Safari/537.36',</span> <span class="pre">'Mozilla/5.0</span> <span class="pre">(X11;</span> <span class="pre">Ubuntu;</span> <span class="pre">Linux</span> <span class="pre">x86_64;</span> <span class="pre">rv:15.0)</span> <span class="pre">Gecko/20100101</span> <span class="pre">Firefox/15.0.1']</span></em><a class="headerlink" href="#scrapemyst.ScrapeMyst.user_agents" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, E4CRYPT3D.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
