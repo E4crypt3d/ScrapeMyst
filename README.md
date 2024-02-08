@@ -29,7 +29,7 @@ from scrapemyst import scrapemyst
 ```
 
 - Example of sending a GET request
-  -- `send_get` and `send_post` both support sleep between requests sleep argument accepts `int`,`float` or `tuple` as shown in the examples.
+  - `send_get` and `send_post` both support sleep between requests sleep argument accepts `int`,`float` or `tuple` as shown in the examples.
 
 ```python
 url_get = "https://www.example.com"
