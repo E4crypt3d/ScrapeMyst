@@ -27,7 +27,7 @@ from scrapemyst import scrapemyst
 
 # Example of sending a GET request
 url_get = "https://www.example.com"
-get_response = scrapemyst.send_get(url_get, params={"param1": "value1"}, sleep=True, referer="https://www.referer.com")
+get_response = scrapemyst.send_get(url_get, params={"param1": "value1"}, sleep=3, referer="https://www.referer.com")
 
 if get_response['success']:
     print(f"GET Request Successful. Status Code: {get_response['status_code']}")
@@ -45,7 +45,7 @@ if post_response_form['success']:
 # Example of sending a POST request with JSON data
 url_post_json = "https://www.example.com/api"
 json_data = {"key1": "value1", "key2": "value2"}
-post_response_json = scrapemyst.send_post(url_post_json, json=json_data, sleep=True, referer="https://www.referer.com")
+post_response_json = scrapemyst.send_post(url_post_json, json=json_data, sleep=(2,9), referer="https://www.referer.com")
 
 if post_response_json['success']:
     print(f"POST Request (JSON Data) Successful. Status Code: {post_response_json['status_code']}")
