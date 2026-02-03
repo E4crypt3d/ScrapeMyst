@@ -1,25 +1,36 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: scrapemyst
-Version: 1.0.2
-Summary: A class for sending web requests with customizable headers and user-agents.
+Version: 1.1.0
+Summary: A lean wrapper for requests with stealth features.
 Home-page: https://github.com/E4crypt3d/ScrapeMyst
 Author: E4crypt3d
 Author-email: gohramgkb@gmail.com
 Project-URL: Source, https://github.com/E4crypt3d/ScrapeMyst
-Project-URL: Download, https://pypi.org/project/scrapemyst/1.0.2/
+Project-URL: Tracker, https://github.com/E4crypt3d/ScrapeMyst/issues
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: requests
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
 
 # ScrapeMyst
 
-ScrapeMyst is a Python class for sending web requests with customizable headers and user-agents. It provides methods for sending both GET and POST requests with customizable headers, user-agents, and optional proxy support. The class also includes features for adding random sleep intervals before making requests to simulate human-like behavior.
+a lean, human-like wrapper for Python `requests`. Handles user-agent rotation, proxy setup, and random delays so you don't have to.
 
 ## Installation
-
-You can install ScrapeMyst using pip:
 
 ```bash
 pip install scrapemyst
@@ -27,70 +38,89 @@ pip install scrapemyst
 
 ## Usage
 
+### Setup
+
 ```python
-# Import the ScrapeMyst class
 from scrapemyst import ScrapeMyst
-
-# Create an instance of ScrapeMyst, optionally providing a list of proxy URLs
-scrapemyst = ScrapeMyst(proxies=["127.0.0.1:8000", "example.com:8080"])
-
-# OR
-
-# Import the ScrapeMyst object directly if you are not providing list of proxy urls
-from scrapemyst import scrapemyst
-
-
-# Example of sending a GET request
-url_get = "https://www.example.com"
-get_response = scrapemyst.send_get(url_get, params={"param1": "value1"}, sleep=True, referer="https://www.referer.com")
-
-if get_response['success']:
-    print(f"GET Request Successful. Status Code: {get_response['status_code']}")
-    # Access the response object if needed: get_response['data']
-
-# Example of sending a POST request with form data
-url_post_form = "https://www.example.com/post"
-form_data = {"key1": "value1", "key2": "value2"}
-post_response_form = scrapemyst.send_post(url_post_form, data=form_data, sleep=True, referer="https://www.referer.com")
-
-if post_response_form['success']:
-    print(f"POST Request (Form Data) Successful. Status Code: {post_response_form['status_code']}")
-    # Access the response object if needed: post_response_form['data']
-
-# Example of sending a POST request with JSON data
-url_post_json = "https://www.example.com/api"
-json_data = {"key1": "value1", "key2": "value2"}
-post_response_json = scrapemyst.send_post(url_post_json, json=json_data, sleep=True, referer="https://www.referer.com")
-
-if post_response_json['success']:
-    print(f"POST Request (JSON Data) Successful. Status Code: {post_response_json['status_code']}")
-    # Access the response object if needed: post_response_json['data']
-
-
 ```
+
+### Initialize with proxies
+
+```python
+proxies = ["127.0.0.1:8000", "example.com:8080"]
+scrapemyst = ScrapeMyst(proxies=proxies)
+```
+
+### Or use the default instance for quick tasks
+
+```python
+from scrapemyst import scrapemyst
+```
+
+## GET request
+
+Supports fixed sleep (`sleep=3`) or random ranges (`sleep=(1, 5)`).
+
+```python
+res = scrapemyst.send_get(
+    "https://example.com",
+    params={"id": "123"},
+    sleep=(2, 4),
+    referer="https://google.com"
+)
+
+if res["success"]:
+    print(f"status: {res['status_code']}")
+    # data is the raw requests response object
+    print(res["data"].text)
+```
+
+## POST request
+
+Works with standard form data or JSON.
+
+### POST form data
+
+```python
+scrapemyst.send_post(
+    "https://example.com/login",
+    data={"user": "admin"}
+)
+```
+
+### POST JSON
+
+```python
+res = scrapemyst.send_post(
+    "https://api.com/v1",
+    json={"key": "val"},
+    sleep=2
+)
+```
+
+## Response structure
+
+Every method returns a simple dictionary:
+
+* `success`: bool â€” `True` if the request worked
+* `status_code`: int â€” HTTP status code (200, 404, etc.)
+* `data`: the raw response object (if successful)
+* `error_message`: string (if it failed)
 
 ## Customization
 
-You can customize the headers, user-agents, and other settings by updating the ScrapeMyst instance. For example:
+### Add new headers
 
 ```python
-# Update headers
-custom_headers = {
-    "User-Agent": "CustomUserAgent",
-    "Accept-Language": "en-US",
-    "Custom-Header": "CustomValue"
-}
-scrapemyst.update_headers(custom_headers)
-
-# Send a request with updated headers
-response_custom = scrapemyst.send_get('https://example.com')
-print("Custom Response:", response_custom)
+scrapemyst.update_headers({"X-Custom": "Value"})
 ```
 
-## Contributing
+### Overwrite all headers
 
-If you'd like to contribute to ScrapeMyst, feel free to submit pull requests, report issues, or suggest improvements.
+```python
+scrapemyst.update_headers({"User-Agent": "MyBot"}, replace=True)
+```
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details.
+MIT

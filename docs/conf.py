@@ -1,37 +1,33 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+import os
+import sys
+
+# -- Path setup --------------------------------------------------------------
+# If extensions (or modules to document with autodoc) are in another directory,
+# add these directories to sys.path here. If the directory is relative to the
+# documentation root, use os.path.abspath to make it absolute, like shown here.
+sys.path.insert(0, os.path.abspath(".."))
 
 # -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-import sys,os
-sys.path.append(os.path.abspath('..'))
-
-project = 'ScrapeMyst'
-copyright = '2024, E4CRYPT3D'
-author = 'E4CRYPT3D'
-release = '1.0.2'
+project = "ScrapeMyst"
+copyright = "2024, E4CRYPT3D"
+author = "E4CRYPT3D"
+release = "1.1.0"
 
 # -- General configuration ---------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.todo",
+    "sphinx.ext.napoleon",
+]
 
-extensions = []
-extensions.append('sphinx.ext.todo')
-extensions.append('sphinx.ext.autodoc')
-#extensions.append('sphinx.ext.autosummary')
-# extensions.append('sphinx.ext.intersphinx')
-# extensions.append('sphinx.ext.mathjax')
-extensions.append('sphinx.ext.viewcode')
-# extensions.append('sphinx.ext.graphviz')
-
-templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
-
-
+templates_path = ["_templates"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # -- Options for HTML output -------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
+html_theme = "alabaster"
+html_static_path = ["_static"]
 
-html_theme = 'alabaster'
-html_static_path = ['_static']
+# -- Extension configuration -------------------------------------------------
+todo_include_todos = True
+autodoc_member_order = "bysource"
